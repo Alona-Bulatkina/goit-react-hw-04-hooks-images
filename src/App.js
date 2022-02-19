@@ -7,8 +7,7 @@ import Loader from './components/Loader/Loader';
 import Message from './components/Message/Message';
 import Modal from './components/Modal/Modal';
 import IconButton from './components/IconButton/IconButton';
-import { ToastContainer } from 'react-toastify';
-// import { BsX } from 'react-icons/bs';
+
 
 
 import fetchImages from './api/api-services';
@@ -87,15 +86,16 @@ const App = () => {
   };
 
   const needToShowLoadMore = totalHits / 12 > currentPage; // Нужны доп проверки;
-
+  // const notify = () => toast("Запрос не найден");
   return (
     <>
       <Searchbar onSearch={onChangeQuery} />
 
       {images.length < 1 && (
-        <ToastContainer position="top-center"
-        autoClose={5000}
-        pauseOnHover />
+        <Message>
+        <h2>The gallery is empty 🙁</h2>
+        <p>Use search field!</p>
+      </Message>
       )}
 
       <ImageGallery images={images} onImageClick={handleGalleryItem} />
